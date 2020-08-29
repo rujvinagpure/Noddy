@@ -1,7 +1,6 @@
 package com.example.noddy
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -9,14 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +43,12 @@ class MainActivity : AppCompatActivity() {
         //list = mutableListOf()
         recylerview = findViewById(R.id.recyclerView)
 
-        recylerview.setLayoutManager(GridLayoutManager(this, 2))
+        val linearLayoutManager = GridLayoutManager(this,2,LinearLayoutManager.VERTICAL,true)
+       // linearLayoutManager.reverseLayout = true
+        //linearLayoutManager.stackFromEnd = true
+        recylerview.setLayoutManager(linearLayoutManager)
+
+        //recylerview.setLayoutManager(GridLayoutManager(this, 2))
 
         val phoneId = Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
 
@@ -98,8 +108,13 @@ class MainActivity : AppCompatActivity() {
                 })
             }
         }
+
+
         recylerview.adapter = myfirebaseRecyclerViewAdapter
+
+
         myfirebaseRecyclerViewAdapter.startListening()
+
 
     }
 }
