@@ -1,6 +1,6 @@
 package com.example.noddy
 
-data class User(val UserId:String,val title:String,val description:String,val Date:String,val color:Int){
+data class User(val userId:String,val title:String,val description:String,val date:String,val color:Int){
     constructor(): this("","","","",0){
 
     }

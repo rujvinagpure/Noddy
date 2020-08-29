@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,8 +44,8 @@ class MainActivity : AppCompatActivity() {
         //list = mutableListOf()
         recylerview = findViewById(R.id.recyclerView)
 
-        val linearLayoutManager = GridLayoutManager(this,2,LinearLayoutManager.VERTICAL,true)
-       // linearLayoutManager.reverseLayout = true
+        val linearLayoutManager = GridLayoutManager(this,2,LinearLayoutManager.VERTICAL,false)
+            // linearLayoutManager.reverseLayout = true
         //linearLayoutManager.stackFromEnd = true
         recylerview.setLayoutManager(linearLayoutManager)
 
@@ -64,14 +65,35 @@ class MainActivity : AppCompatActivity() {
             var title: TextView = itemView!!.findViewById(R.id.titleCard)
              var desrc: TextView = itemView!!.findViewById(R.id.descrCard)
             var card:CardView = itemView!!.findViewById(R.id.cardcard)
+            var date:TextView = itemView!!.findViewById(R.id.datenotshow)
+            var userId:TextView = itemView!!.findViewById(R.id.userIdnotshow)
+           var close:FloatingActionButton = itemView!!.findViewById(R.id.closebtn)
+
 
             var onClickedListener: ((position: Int, descr: String) -> Unit)? = null
 
             fun bindView(position: Int) {
 
-              //  itemView.setOnClickListener{
-                  //  onClickedListener?.invoke(position, desrc.text.toString())
-                //}
+               itemView.setOnClickListener{
+                    onClickedListener?.invoke(position, desrc.text.toString())
+                   Log.d("mannik", userId.text.toString())
+                   val intent = Intent(applicationContext,ChangeActivity::class.java)
+                       .putExtra("title",title.text.toString())
+                       .putExtra("descr",desrc.text.toString())
+                       .putExtra("Userid",userId.text.toString())
+                       .putExtra("Date",date.text.toString())
+                       .putExtra("color",card.cardBackgroundColor.defaultColor.toString())
+
+                   startActivity(intent)
+
+                   close.setOnClickListener {
+                       Log.d("mmm",userId.text.toString())
+                       val ref = FirebaseDatabase.getInstance().getReference("$phoneId").child(userId.text.toString())
+                       ref.removeValue()
+                   }
+
+
+                }
             }
 
 
@@ -94,7 +116,7 @@ class MainActivity : AppCompatActivity() {
             override fun onBindViewHolder(item: ItemViewHolder, position: Int, model: User) {
                 val itemId = getRef(position).key.toString()
 
-                //item.bindView(-position)
+                item.bindView(position)
 
                 ref.child(itemId).addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {}
@@ -103,12 +125,15 @@ class MainActivity : AppCompatActivity() {
                         item.title.setText( model.title)
                         item.desrc.setText(model.description)
                         item.card.setCardBackgroundColor(model.color)
+                        item.date.setText(model.date)
+                        item.userId.setText(model.userId)
 
                     }
                 })
             }
         }
 
+        myfirebaseRecyclerViewAdapter.notifyDataSetChanged()
 
         recylerview.adapter = myfirebaseRecyclerViewAdapter
 
