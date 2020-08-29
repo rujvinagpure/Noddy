@@ -1,6 +1,7 @@
 package com.example.noddy
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -9,10 +10,13 @@ import android.provider.Settings
 import android.util.Log
 import android.widget.DatePicker
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
+import androidx.core.view.get
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.FirebaseDatabase
 import java.text.DateFormat
 import java.util.*
 
@@ -24,6 +28,7 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
     lateinit var greenfab:FloatingActionButton
     lateinit var pinkfab:FloatingActionButton
     lateinit var yellowfab:FloatingActionButton
+    lateinit var savebtn:FloatingActionButton
     lateinit var cardview:CardView
     lateinit var phoneId:String
     lateinit var title:TextView
@@ -37,6 +42,7 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
         yellowfab = findViewById<FloatingActionButton>(R.id.yellowfab)
         greenfab = findViewById<FloatingActionButton>(R.id.greenfab)
         pinkfab = findViewById<FloatingActionButton>(R.id.pinkfab)
+        savebtn = findViewById<FloatingActionButton>(R.id.savebtn)
         datepicker1 = findViewById<TextView>(R.id.datepicker)
         title = findViewById<TextView>(R.id.title)
         descr = findViewById<TextView>(R.id.description)
@@ -52,6 +58,10 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
             dialogfragment.show(supportFragmentManager,"date picker")
 
         }
+        savebtn.setOnClickListener {
+            DatebaseUploading()
+        }
+
     }
 
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
@@ -66,23 +76,56 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
 
     private fun colorChoose(){
         redfab.setOnClickListener {
-           cardview.setCardBackgroundColor(Color.parseColor("#ff8a80"))
+          val c=   redfab.backgroundTintList?.defaultColor
+            if (c != null) {
+                cardview.setCardBackgroundColor(c)
+            }
         }
 
         bluefab.setOnClickListener {
-           cardview.setCardBackgroundColor(Color.parseColor("#80d8ff"))
+            val c=   bluefab.backgroundTintList?.defaultColor
+            if (c != null) {
+                cardview.setCardBackgroundColor(c)
+            }
         }
 
         yellowfab.setOnClickListener {
-           cardview.setCardBackgroundColor(Color.parseColor("#ffa000"))
+            val c=   yellowfab.backgroundTintList?.defaultColor
+            if (c != null) {
+                cardview.setCardBackgroundColor(c)
+            }
         }
 
         pinkfab.setOnClickListener {
-           cardview.setCardBackgroundColor(Color.parseColor("#b388ff"))
+            val c=   pinkfab.backgroundTintList?.defaultColor
+            if (c != null) {
+                cardview.setCardBackgroundColor(c)
+            }
         }
 
         greenfab.setOnClickListener {
-           cardview.setCardBackgroundColor(Color.parseColor("#98ff98"))
+            val c=   greenfab.backgroundTintList?.defaultColor
+            if (c != null) {
+                cardview.setCardBackgroundColor(c)
+            }
+        }
+
+    }
+    private fun DatebaseUploading(){
+        Log.d("manik",phoneId)
+        val t = title.text.toString()
+        val d = descr.text.toString()
+        val date = datepicker1.text.toString()
+      val c= cardview.cardBackgroundColor.defaultColor
+        val ref= FirebaseDatabase.getInstance().getReference(phoneId)
+
+        val UserId = ref.push().key
+        val user = User(UserId!!,t,d,date,c)
+        ref.child(UserId).setValue(user).addOnCompleteListener {
+            Toast.makeText(this,"Succes saved",Toast.LENGTH_LONG).show()
+
+            finish()
+
         }
 
     }

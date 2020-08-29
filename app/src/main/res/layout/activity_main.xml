@@ -60,12 +60,13 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="40dp"
             android:src="@drawable/ic_baseline_add_24"
-            app:backgroundTint="#FFFFFF"/>
+            app:backgroundTint="#FFFFFF" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
