@@ -1,5 +1,6 @@
 package com.example.noddy
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
@@ -90,9 +91,11 @@ class MainActivity : AppCompatActivity() {
                    startActivity(intent)
 
                    close.setOnClickListener {
-                       Log.d("mmm",userId.text.toString())
-                       val ref = FirebaseDatabase.getInstance().getReference("$phoneId").child(userId.text.toString())
-                       ref.removeValue()
+
+                           Log.d("mmm",userId.text.toString())
+                           val ref = FirebaseDatabase.getInstance().getReference("$phoneId").child(userId.text.toString())
+                           ref.removeValue()
+
                    }
 
 
