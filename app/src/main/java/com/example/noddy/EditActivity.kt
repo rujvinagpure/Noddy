@@ -1,9 +1,6 @@
 package com.example.noddy
 
 import android.app.DatePickerDialog
-import android.content.Intent
-import android.graphics.Color
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
@@ -11,9 +8,7 @@ import android.util.Log
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
-import androidx.core.view.get
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.FirebaseDatabase
@@ -33,6 +28,7 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
     lateinit var phoneId:String
     lateinit var title:TextView
     lateinit var descr:TextView
+    lateinit var  UserId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +38,10 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
         yellowfab = findViewById<FloatingActionButton>(R.id.yellowfab)
         greenfab = findViewById<FloatingActionButton>(R.id.greenfab)
         pinkfab = findViewById<FloatingActionButton>(R.id.pinkfab)
-        savebtn = findViewById<FloatingActionButton>(R.id.savebtn)
-        datepicker1 = findViewById<TextView>(R.id.datepicker)
-        title = findViewById<TextView>(R.id.title)
-        descr = findViewById<TextView>(R.id.description)
+        savebtn = findViewById<FloatingActionButton>(R.id.savebtn1)
+        datepicker1 = findViewById<TextView>(R.id.datepicker1)
+        title = findViewById<TextView>(R.id.title1)
+        descr = findViewById<TextView>(R.id.description1)
         phoneId = Settings.Secure.getString(this.contentResolver,Settings.Secure.ANDROID_ID)
         Log.d("manik",phoneId)
 
@@ -59,8 +55,10 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
 
         }
         savebtn.setOnClickListener {
-            DatebaseUploading()
-        }
+            //EditThing()
+             DatebaseUploading()
+
+       }
 
     }
 
@@ -119,7 +117,7 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
       val c= cardview.cardBackgroundColor.defaultColor
         val ref= FirebaseDatabase.getInstance().getReference(phoneId)
 
-        val UserId = ref.push().key
+         UserId = ref.push().key.toString()
         val user = User(UserId!!,t,d,date,c)
         ref.child(UserId).setValue(user).addOnCompleteListener {
             Toast.makeText(this,"Succes saved",Toast.LENGTH_LONG).show()
@@ -129,5 +127,6 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
         }
 
     }
+
 }
 
