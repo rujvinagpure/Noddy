@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.WindowManager
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.Toast
@@ -32,6 +33,8 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
         setContentView(R.layout.activity_edit)
         redfab = findViewById<FloatingActionButton>(R.id.redfab)
         bluefab = findViewById<FloatingActionButton>(R.id.bluefab)
@@ -56,7 +59,14 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
         }
         savebtn.setOnClickListener {
             //EditThing()
-             DatebaseUploading()
+
+            if(title.text.toString().isEmpty() && descr.text.toString().isEmpty()){
+                Toast.makeText(this,"Add some Text",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                DatebaseUploading()
+            }
+
 
        }
 

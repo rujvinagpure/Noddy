@@ -39,19 +39,20 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinatorLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <ImageButton
                 android:id="@+id/closebtn"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="end"
                 android:layout_margin="5dp"
-                android:src="@drawable/ic_baseline_clear_24"
-                app:backgroundTint="#000000" />
+                android:background="@drawable/close"
+                app:srcCompat="@drawable/ic_baseline_clear_24" />
+
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
@@ -78,6 +79,7 @@
                 android:maxWidth="120dp"
                 android:text="Title"
                 android:textColor="#000"
+                android:maxHeight="50dp"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -108,6 +110,7 @@
                 android:layout_marginTop="10dp"
                 android:maxWidth="130dp"
                 android:text="Description"
+                android:maxHeight="100dp"
                 android:textColor="#292929"
                 android:textSize="14sp" />
         </LinearLayout>

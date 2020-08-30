@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_main)
 
         add = findViewById(R.id.addbtn)
@@ -67,7 +68,9 @@ class MainActivity : AppCompatActivity() {
             var card:CardView = itemView!!.findViewById(R.id.cardcard)
             var date:TextView = itemView!!.findViewById(R.id.datenotshow)
             var userId:TextView = itemView!!.findViewById(R.id.userIdnotshow)
-           var close:FloatingActionButton = itemView!!.findViewById(R.id.closebtn)
+           var close: ImageButton = itemView!!.findViewById(R.id.closebtn)
+
+
 
 
             var onClickedListener: ((position: Int, descr: String) -> Unit)? = null
