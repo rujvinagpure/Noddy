@@ -1,4 +1,4 @@
-package com.example.noddy
+package com.jerry.noddy
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
