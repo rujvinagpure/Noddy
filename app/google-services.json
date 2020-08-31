@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:499534640808:android:84bed3540bc8d63975349d",
+        "mobilesdk_app_id": "1:499534640808:android:c4929ef738d906b375349d",
         "android_client_info": {
-          "package_name": "com.example.noddy"
+          "package_name": "com.jerry.noddy"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "499534640808-pon2gq98v04os6a812hgpejiuvomjf2k.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.noddy",
-            "certificate_hash": "4bf63ccc180cdef3ffc0d664b218894d620653c6"
-          }
-        },
         {
           "client_id": "499534640808-9sct0cph7qv254ufe005l85dpiica7un.apps.googleusercontent.com",
           "client_type": 3

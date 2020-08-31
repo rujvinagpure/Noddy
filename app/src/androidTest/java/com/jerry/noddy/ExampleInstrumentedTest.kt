@@ -1,4 +1,4 @@
-package com.example.noddy
+package com.jerry.noddy
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

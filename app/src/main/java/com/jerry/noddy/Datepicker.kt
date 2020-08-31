@@ -1,4 +1,4 @@
-package com.example.noddy
+package com.jerry.noddy
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
