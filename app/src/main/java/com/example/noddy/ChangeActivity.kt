@@ -24,6 +24,7 @@ class ChangeActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener 
     lateinit var pinkfab: FloatingActionButton
     lateinit var yellowfab: FloatingActionButton
     lateinit var savebtn: FloatingActionButton
+    lateinit var close: FloatingActionButton
     lateinit var cardview: CardView
     lateinit var phoneId: String
     lateinit var title: TextView
@@ -40,6 +41,8 @@ class ChangeActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener 
         greenfab = findViewById<FloatingActionButton>(R.id.greenfab)
         pinkfab = findViewById<FloatingActionButton>(R.id.pinkfab)
         savebtn = findViewById<FloatingActionButton>(R.id.savebtn1)
+        close = findViewById<FloatingActionButton>(R.id.closee)
+
         datepicker1 = findViewById<TextView>(R.id.datepicker1)
         title = findViewById<TextView>(R.id.title1)
         descr = findViewById<TextView>(R.id.description1)
@@ -67,6 +70,31 @@ class ChangeActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener 
             }
 
         }
+        close.setOnClickListener{
+            val builder = AlertDialog.Builder(this)
+            //set title for alert dialog
+            builder.setTitle("Are you Sure want to Exit!!")
+            //set message for alert dialog
+
+            //performing positive action
+            builder.setPositiveButton("Yes"){dialogInterface, which ->
+                finish()
+            }
+            //performing negative action
+            builder.setNegativeButton("No"){dialogInterface, which ->
+                val alertDialog: AlertDialog = builder.create()
+                // Set other dialog properties
+                alertDialog.setCancelable(false)
+                alertDialog.dismiss()
+
+            }
+            // Create the AlertDialog
+            val alertDialog: AlertDialog = builder.create()
+            // Set other dialog properties
+            alertDialog.setCancelable(false)
+            alertDialog.show()        
+            }
+
 
     }
 
