@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             var card:CardView = itemView!!.findViewById(R.id.cardcard)
             var date:TextView = itemView!!.findViewById(R.id.datenotshow)
             var userId:TextView = itemView!!.findViewById(R.id.userIdnotshow)
-           var close: ImageButton = itemView!!.findViewById(R.id.closebtn)
+           var close: Button = itemView!!.findViewById(R.id.closebtn)
 
 
 
