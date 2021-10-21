@@ -1,10 +1,11 @@
-package com.jerry.noddy
+package com.example.noddy
 
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,6 +21,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             var card:CardView = itemView!!.findViewById(R.id.cardcard)
             var date:TextView = itemView!!.findViewById(R.id.datenotshow)
             var userId:TextView = itemView!!.findViewById(R.id.userIdnotshow)
-           var close: ImageButton = itemView!!.findViewById(R.id.closebtn)
+           var close: Button = itemView!!.findViewById(R.id.closebtn)
 
 
 
@@ -87,11 +90,9 @@ class MainActivity : AppCompatActivity() {
                    startActivity(intent)
 
                    close.setOnClickListener {
-
-                           Log.d("mmm",userId.text.toString())
-                           val ref = FirebaseDatabase.getInstance().getReference("$phoneId").child(userId.text.toString())
-                           ref.removeValue()
-
+                       Log.d("mmm",userId.text.toString())
+                       val ref = FirebaseDatabase.getInstance().getReference("$phoneId").child(userId.text.toString())
+                       ref.removeValue()
                    }
 
 
@@ -145,7 +146,3 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
-
-
-
-
