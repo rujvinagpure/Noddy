@@ -1,4 +1,4 @@
-package com.jerry.noddy
+package com.example.noddy
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -26,7 +26,7 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
     lateinit var pinkfab:FloatingActionButton
     lateinit var yellowfab:FloatingActionButton
     lateinit var savebtn:FloatingActionButton
-    lateinit var close:FloatingActionButton
+    lateinit var close: FloatingActionButton
     lateinit var cardview:CardView
     lateinit var phoneId:String
     lateinit var title:TextView
@@ -44,7 +44,8 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
         greenfab = findViewById<FloatingActionButton>(R.id.greenfab)
         pinkfab = findViewById<FloatingActionButton>(R.id.pinkfab)
         savebtn = findViewById<FloatingActionButton>(R.id.savebtn1)
-        close = findViewById<FloatingActionButton>(R.id.close)
+        close = findViewById<FloatingActionButton>(R.id.closee)
+
         datepicker1 = findViewById<TextView>(R.id.datepicker1)
         title = findViewById<TextView>(R.id.title1)
         descr = findViewById<TextView>(R.id.description1)
@@ -72,10 +73,10 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
 
 
        }
-        close.setOnClickListener {
+        close.setOnClickListener{
             val builder = AlertDialog.Builder(this)
             //set title for alert dialog
-            builder.setTitle("Are you Sure want to Exit")
+            builder.setTitle("Are you Sure want to Exit!!")
             //set message for alert dialog
 
             //performing positive action
@@ -94,8 +95,7 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
             val alertDialog: AlertDialog = builder.create()
             // Set other dialog properties
             alertDialog.setCancelable(false)
-            alertDialog.show()
-        }
+            alertDialog.show()        }
 
     }
 
@@ -157,7 +157,7 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
          UserId = ref.push().key.toString()
         val user = User(UserId!!,t,d,date,c)
         ref.child(UserId).setValue(user).addOnCompleteListener {
-            Toast.makeText(this,"Successfully saved",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"Succes saved",Toast.LENGTH_LONG).show()
 
             finish()
 
@@ -166,4 +166,3 @@ class EditActivity : AppCompatActivity() , DatePickerDialog.OnDateSetListener {
     }
 
 }
-
