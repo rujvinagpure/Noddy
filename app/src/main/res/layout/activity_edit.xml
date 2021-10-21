@@ -165,6 +165,7 @@
                     android:layout_gravity="end">
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/closee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -179,6 +180,7 @@
                         android:src="@drawable/ic_baseline_check_24"
                         app:backgroundTint="#000000" />
                 </LinearLayout>
+
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
         </LinearLayout>
 
